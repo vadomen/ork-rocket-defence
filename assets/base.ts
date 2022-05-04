@@ -8,7 +8,7 @@ export class AirDefenceBase {
         this.map = map;
     }
 
-    createBase = ({ latLng }) => {
+    createBase({ latLng }) {
         const item = {
             type: 'airDefenceSystem',
             center: latLng,

@@ -1,10 +1,11 @@
 import { AirDefenceBase } from './base';
-import { RocketTrajectory } from './rocketTrajectory'
+import { RocketTrajectory } from './rocketTrajectory';
+import { Cities } from './cities';
 
 const startGame = (map, rocketTrajectory) => {
   window.setInterval(() => {
     rocketTrajectory.generateTrajectory(map);
-  }, Math.random() * 5000);
+  }, Math.random() * 7000);
 }
 
 function initMap(): void {
@@ -17,8 +18,11 @@ function initMap(): void {
       mapTypeId: 'terrain',
     }
   );
+  const cities = new Cities(map);
+  cities.circleCities();
+
   const airDefenceBase = new AirDefenceBase(map);
-  const rocketTrajectory = new RocketTrajectory(airDefenceBase.bases);
+  const rocketTrajectory = new RocketTrajectory(airDefenceBase.bases, cities);
 
   map.addListener('click', (mapsMouseEvent) => {
     airDefenceBase.createBase(mapsMouseEvent);

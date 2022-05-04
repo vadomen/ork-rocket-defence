@@ -3,12 +3,14 @@ import { Trajectory, Circle } from './types';
 export class RocketTrajectory {
     trajectories: Trajectory[] = [];
     airDefenceSystems: Circle[];
+    cities: any;
 
-    constructor(airDefenceSystems) {
+    constructor(airDefenceSystems, cities) {
         this.airDefenceSystems = airDefenceSystems;
+        this.cities = cities;
     }
 
-    drawRocket = () => {
+    drawRocket () {
         return {
             path: google.maps.SymbolPath.CIRCLE,
             scale: 8,
@@ -16,29 +18,29 @@ export class RocketTrajectory {
         };
     }
 
-    generateTrajectoryPath = () => {
+    generateTrajectoryPath() {
         const lines = [
             [
                 { lat: 45.29, lng: 31.35 },
-                { lat: 50.413, lng: 30.550 }
+                this.cities.getRandomCity().center,
             ],
             [
                 {lat: 45.264, lng: 34.291},
-                { lat: 50.413, lng: 30.550 }
+                this.cities.getRandomCity().center,
             ],
             [
                 { lat: 52.449, lng: 28.004},
-                { lat: 50.413, lng: 30.550 }
+                this.cities.getRandomCity().center,
             ],
             [
                 { lat: 51.786, lng: 36.175},
-                { lat: 50.413, lng: 30.550 }
+                this.cities.getRandomCity().center,
             ],
         ];
-        return lines[Math.floor(Math.random()*lines.length)];
+        return lines[Math.floor(Math.random() * lines.length)];
     }
 
-    generateTrajectory = (map) => {
+    generateTrajectory(map) {
         const trajectory: Trajectory = {
             id: Symbol('trajectoryId'),
             count: 0,
@@ -62,14 +64,14 @@ export class RocketTrajectory {
     }
 
 
-    destroyRocket = (trajectory: Trajectory) => {
+    destroyRocket (trajectory: Trajectory) {
         const { polyline, interval } = trajectory;
         polyline.setMap(null);
         polyline.set('icons', []);
         clearInterval(interval);
     };
 
-    calculateCollision = (trajectory: Trajectory) => {
+    calculateCollision(trajectory: Trajectory) {
         const { polyline, count } = trajectory;
         const path = polyline.getPath().getArray();
         const rocketPosition = google.maps.geometry.spherical.interpolate(path[0], path[1], (count / 200));
@@ -80,7 +82,7 @@ export class RocketTrajectory {
         });
     };
 
-    rocketFly = (trajectory: Trajectory) => {
+    rocketFly(trajectory: Trajectory) {
         let count = 0;
         let interval;
         interval = window.setInterval(() => {

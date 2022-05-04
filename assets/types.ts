@@ -10,3 +10,18 @@ export interface Trajectory {
     interval: number;
     polyline: google.maps.Polyline;
 }
+
+
+
+export interface City {
+    city: string,
+    lat: number,
+    lng: number,
+    country: string,
+    center: google.maps.LatLngLiteral,
+    iso2: string,
+    admin_name: string,
+    capital: string,
+    population: number,
+    population_proper: string
+}
