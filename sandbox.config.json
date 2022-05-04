@@ -5,7 +5,7 @@
     "disableLogging": false,
     "container": {
       "port": 3000,
-      "node": 14
+      "node": 18
     }
   }
   
