@@ -2,6 +2,8 @@ import { AirDefenceBase } from './base';
 import { RocketTrajectory } from './rocketTrajectory';
 import { Cities } from './cities';
 
+const UA_CENTER = { lat: 48.3794, lng: 31.1656 };
+
 const startGame = (map, rocketTrajectory) => {
   window.setInterval(() => {
     rocketTrajectory.generateTrajectory(map);
@@ -9,12 +11,11 @@ const startGame = (map, rocketTrajectory) => {
 }
 
 function initMap(): void {
-  const myLatlng = { lat: 48.3794, lng: 31.1656 };
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
       zoom: 7,
-      center: myLatlng,
+      center: UA_CENTER,
       mapTypeId: 'terrain',
     }
   );
@@ -27,8 +28,11 @@ function initMap(): void {
   map.addListener('click', (mapsMouseEvent) => {
     airDefenceBase.createBase(mapsMouseEvent);
   });
-
-  startGame(map, rocketTrajectory);
+  const buttonStartGame = document.querySelector("#start-game");
+  // @ts-ignore
+  buttonStartGame.addEventListener('click', () => {
+    startGame(map, rocketTrajectory);
+  });
 }
 
 declare global {
