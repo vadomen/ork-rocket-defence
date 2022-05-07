@@ -26,7 +26,7 @@ export class Cities {
     circleCities() {
         const cities = this.getCapitals();
         cities.forEach(city => new google.maps.Circle({
-            strokeColor: "#dc0404",
+            strokeColor: "#064605",
             strokeOpacity: 0.8,
             strokeWeight: 2,
             fillColor: "#3d9d05",

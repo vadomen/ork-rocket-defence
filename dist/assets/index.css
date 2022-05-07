@@ -2,4 +2,4 @@
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
- */#map{height:100%;width:100%;border:solid 2px black}#footer{position:fixed;left:0;bottom:0;width:100%;background-color:gray;color:#fff}.button{border:none;color:#fff;padding:20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;margin:4px 2px;cursor:pointer;border-radius:50%}.button-green{background-color:#4caf50}.button-red{background-color:#b70c2b}html,body{height:100%;margin:0;padding:0}
+ */#map{height:100%;width:100%;border:solid 2px black}html,body{height:100%;margin:0;padding:0}.button{color:#fff;padding:20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;margin:4px 2px;cursor:pointer}.button.active{border:5px}.button.green{background-color:#4caf50}.button.red{background-color:#b70c2b}.button.blue{background-color:#0c84b7}#footer{position:fixed;left:0;bottom:0;width:100%;background-color:gray;color:#fff}

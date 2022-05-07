@@ -13,30 +13,6 @@
   border: solid 2px black;
 }
 
-#footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: grey;
-  color: white;
-}
-
-.button {
-  border: none;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 50%;
-}
-
-.button-green {  background-color: #4CAF50; }
-.button-red {  background-color: #b70c2b; }
 /*
  * Optional: Makes the sample page fill the window. 
  */
@@ -47,3 +23,30 @@ body {
   padding: 0;
 }
 
+.button {
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button.active {
+  border: 5px;
+}
+
+.button.green {  background-color: #4CAF50; }
+.button.red {  background-color: #b70c2b; }
+.button.blue {  background-color: #0c84b7; }
+
+#footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: grey;
+  color: white;
+}

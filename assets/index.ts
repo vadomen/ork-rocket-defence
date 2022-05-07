@@ -10,8 +10,12 @@ const startGame = (map, rocketTrajectory) => {
   }, Math.random() * 7000);
 }
 
+let map;
+let airDefenceBase;
+let rocketTrajectory;
+
 function initMap(): void {
-  const map = new google.maps.Map(
+  map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
       zoom: 7,
@@ -22,16 +26,29 @@ function initMap(): void {
   const cities = new Cities(map);
   cities.circleCities();
 
-  const airDefenceBase = new AirDefenceBase(map);
-  const rocketTrajectory = new RocketTrajectory(airDefenceBase.bases, cities);
+  airDefenceBase = new AirDefenceBase(map);
+  rocketTrajectory = new RocketTrajectory(airDefenceBase.bases, cities);
 
   map.addListener('click', (mapsMouseEvent) => {
     airDefenceBase.createBase(mapsMouseEvent);
   });
   const buttonStartGame = document.querySelector("#start-game");
-  // @ts-ignore
-  buttonStartGame.addEventListener('click', () => {
+
+  buttonStartGame && buttonStartGame.addEventListener('click', () => {
     startGame(map, rocketTrajectory);
+  });
+
+  const buttonSetBaseType = document.querySelectorAll(".button.set-base");
+  buttonSetBaseType.forEach(base => {
+    base.addEventListener('click', (event) => {
+      buttonSetBaseType.forEach(b => {
+        b.classList.remove('active');
+      })
+      // @ts-ignore
+      airDefenceBase.currentBase = event.target.getAttribute('data-baseType');
+      // @ts-ignore
+      event.target.classList.add('active');
+    });
   });
 }
 
